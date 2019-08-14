@@ -1,0 +1,11 @@
+<header>
+  <span class = 'headtags' id = 'logo'>Logo</span>
+  <input  type="text" placeholder="Search for products, brands and more" id = 'searchBox'><i class="fa fa-search" id ='searchIcon' aria-hidden="true"></i>
+
+  <div class = 'headtags' id = "login_Signup" data-toggle="modal" data-target="#myModal" (click) = loginTriggerFunc()> Login & Sigup</div>
+  <div class = 'headtags' id = 'more'>More</div>
+  <div class = 'headtags' id = 'cart'><i class="fa fa-shopping-cart"></i>Cart</div>
+  
+</header>
+
+<app-login-signup [trigger] = loginModalTrigger></app-login-signup>
