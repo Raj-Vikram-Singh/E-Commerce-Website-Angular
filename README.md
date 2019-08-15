@@ -1,2 +1,2 @@
 # E-Commerce-Website-Angular
-E-Commerce website mae using Angularn7 and ng-bootstrap
+E-Commerce website made using Angularn7 and ng-bootstrap
