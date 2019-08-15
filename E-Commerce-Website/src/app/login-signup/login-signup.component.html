@@ -9,7 +9,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">Registration and Signin</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -56,16 +56,15 @@
               </div>
               <div class="col-md-6">
                 <input type="text" formControlName="UserName" placeholder="User Name" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                   
+                    <span style="color: red;" *ngIf="!registrationForm.controls['UserName'].valid&&registrationForm.controls['UserName'].dirty">
+                      <span *ngIf="registrationForm.controls.UserName.errors.required">User Name is Required.</span>
+                      <span *ngIf="registrationForm.controls.UserName.errors.minlength">User name minimum should be length of 3.</span>
+                      <span *ngIf="registrationForm.controls.UserName.errors.maxlength">User name maximum should be length of 50.</span>
+                    </span>
+                   
               </div>
-              <div class="col-md-4">
-                  
-                <span style="font-weight: bold;color: red;" *ngIf="!registrationForm.controls['UserName'].valid&&registrationForm.controls['UserName'].dirty">
-                  <span *ngIf="registrationForm.controls.UserName.errors.required">User Name is Required.</span>
-                  <span *ngIf="registrationForm.controls.UserName.errors.minlength">User name minimum should be length of 3.</span>
-                  <span *ngIf="registrationForm.controls.UserName.errors.maxlength">User name maximum should be length of 50.</span>
-                </span>
-               
-              </div>
+             
             </div>
             <br>
             <div class="row">
@@ -74,13 +73,12 @@
               </div>
               <div class="col-md-6">
                 <input type="password" formControlName="Password" placeholder="Password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-              </div>
-              <div class="col-md-4">
-                  <span style="font-weight: bold;color: red;"  *ngIf="!registrationForm.controls['Password'].valid&&registrationForm.controls['Password'].dirty">
-                      <span *ngIf="registrationForm.controls.Password.errors.required">Password is Required.</span>
-                      <span *ngIf="registrationForm.controls.Password.errors.minlength">Password minimum should be length of 3.</span>
-                      <span *ngIf="registrationForm.controls.Password.errors.maxlength">Password maximum should be length of 50.</span>
-                    </span>
+              
+                <span style="color: red;"  *ngIf="!registrationForm.controls['Password'].valid&&registrationForm.controls['Password'].dirty">
+                  <span *ngIf="registrationForm.controls.Password.errors.required">Password is Required.</span>
+                  <span *ngIf="registrationForm.controls.Password.errors.minlength">Password minimum should be length of 3.</span>
+                  <span *ngIf="registrationForm.controls.Password.errors.maxlength">Password maximum should be length of 50.</span>
+                </span>
               </div>
             </div>
             <br>
@@ -90,12 +88,10 @@
               </div>
               <div class="col-md-6">
                 <input type="email" formControlName="Email" placeholder="Email" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-              </div>
-              <div class="col-md-4">
-                  <span style="font-weight: bold;color: red;" *ngIf="!registrationForm.controls['Email'].valid&&registrationForm.controls['Email'].dirty">
-                      <span *ngIf="registrationForm.controls.Email.errors.required">Email is Required.</span>
-                      <span *ngIf="registrationForm.controls.Email.errors.email">Email is not in correct pattern.</span>
-                    </span>
+                <span style="color: red;" *ngIf="!registrationForm.controls['Email'].valid&&registrationForm.controls['Email'].dirty">
+                  <span *ngIf="registrationForm.controls.Email.errors.required">Email is Required.</span>
+                  <span *ngIf="registrationForm.controls.Email.errors.email">Email is not in correct pattern.</span>
+                </span>
               </div>
             </div>
             <br>
@@ -112,11 +108,10 @@
                   <option>Tech Support</option>
                   <option>CSE</option>
                 </select>
-              </div>
-              <div class="col-md-4">
-                  <span style="font-weight: bold;color: red;" *ngIf="!registrationForm.controls['Role'].valid&&registrationForm.controls['Role'].dirty&&registrationForm.controls['Role'].touched">
-                      <span *ngIf="registrationForm.controls.Role.errors.required">Role is Required.</span>
-                    </span>
+
+                <span style="color: red;" *ngIf="!registrationForm.controls['Role'].valid&&registrationForm.controls['Role'].dirty&&registrationForm.controls['Role'].touched">
+                  <span *ngIf="registrationForm.controls.Role.errors.required">Role is Required.</span>
+                </span>
               </div>
             </div>
             <br>
@@ -126,12 +121,10 @@
               </div>
               <div class="col-md-6">
                 <input type="text" formControlName="Phone" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-              </div>
-              <div class="col-md-4">
-                  <span style="font-weight: bold;color: red;" *ngIf="!registrationForm.controls['Phone'].valid&&registrationForm.controls['Phone'].dirty">
-                      <span *ngIf="registrationForm.controls.Phone.errors.required">Phone is Required.</span>
-                    </span>
-              </div>
+                <span style="color: red;" *ngIf="!registrationForm.controls['Phone'].valid&&registrationForm.controls['Phone'].dirty">
+                  <span *ngIf="registrationForm.controls.Phone.errors.required">Phone is Required.</span>
+                </span>
+              </div>      
             </div>
             <br>
             <div class="row">
@@ -147,13 +140,18 @@
                       <option>Not prefer to dislose</option>
                     </select>
                 </div>
-                <div class="col-md-4">
-                  
-                </div>
+                
               </div>
           </div>
           <button type="button" style="margin-left: 39%;" [disabled]="!registrationForm.valid" class="btn btn-outline-success" (click)="OnRegister(registrationForm.value)"><b>Register</b></button>
         </form>
+<br>
+        <div *ngFor="let alert of alerts" class="alert alert-dismissible fade show" [ngClass]="'alert alert-' + alert.type" role="alert">
+            {{ alert.message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
   </div>
  
@@ -162,7 +160,8 @@
 
       </div>
 
-     
+      
+
     </div>
   </div>
 </div>
