@@ -1,6 +1,4 @@
-export interface Registration
-
- {
+export interface Registration {
     Id: number;
     UserName: string;
     Password: string;

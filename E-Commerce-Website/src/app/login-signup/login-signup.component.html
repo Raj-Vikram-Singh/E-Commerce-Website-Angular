@@ -43,7 +43,7 @@
         <input type="password" class="form-control" placeholder="Password">
       </div>
     </form>
-    <button type="button" class="btn btn-success login_registerButton" data-dismiss="modal">Login</button>
+    <button type="button" class="btn btn-success login_registerButton" data-dismiss="modal" (click) = loginUser()>Login</button>
   </div>
 
   <div class="tab-pane container fade" id="Register">
@@ -62,7 +62,7 @@
                       <span *ngIf="registrationForm.controls.UserName.errors.minlength">User name minimum should be length of 3.</span>
                       <span *ngIf="registrationForm.controls.UserName.errors.maxlength">User name maximum should be length of 50.</span>
                     </span>
-                   
+                     
               </div>
              
             </div>
