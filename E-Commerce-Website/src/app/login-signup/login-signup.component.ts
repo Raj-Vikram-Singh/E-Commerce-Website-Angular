@@ -55,7 +55,7 @@ if(trigger) {
 dismissModal() {
 
 if (this.dismissFlag) {
-  let modalDismiss = document.getElementById('loginButton');
+  const modalDismiss = document.getElementById('loginButton');
   modalDismiss.setAttribute('data-dismiss', 'modal');
   modalDismiss.click();
   this.dismissFlag  = false;

@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     this.loginModalTrigger = this.loginModalTrigger ? false : true;
   }
 
-  logout(){
+  logout() {
     this.auth.logoutUser();
   }
 
