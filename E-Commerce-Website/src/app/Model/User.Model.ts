@@ -7,3 +7,8 @@ export interface Registration {
     Gender: string;
     Phone: number;
  }
+
+ export interface Credentials {
+    Email: string;
+    Password: string;
+  }

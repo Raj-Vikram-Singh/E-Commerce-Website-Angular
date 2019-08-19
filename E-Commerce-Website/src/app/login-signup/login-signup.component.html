@@ -28,23 +28,35 @@
 <!-- Tab panes -->
 <div class="tab-content">
   <div class="tab-pane container active" id="Login">
-    <form>
+    <form [formGroup] = "UserLogin">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">@</span>
         </div>
-        <input type="text" class="form-control" placeholder="Username">
+        <input type="text" formControlName = "email" class="form-control" placeholder="Email">
+        <span style="color: red;" *ngIf="!UserLogin.controls['email'].valid&&UserLogin.controls['email'].dirty">
+          <span *ngIf="UserLogin.controls.email.errors.required">Email is Required.</span>
+          <span *ngIf="UserLogin.controls.email.errors.email">Email is not in correct pattern.</span>
+        </span>
       </div>
     
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">&nbsp;*&nbsp;</span>
         </div>
-        <input type="password" class="form-control" placeholder="Password">
+        <input formControlName = "password" type="password" class="form-control" placeholder="password">
+        <span style="color: red;"  *ngIf="!UserLogin.controls['password'].valid&&UserLogin.controls['password'].dirty">
+          <span *ngIf="UserLogin.controls.password.errors.required">password is Required.</span>
+          <span *ngIf="UserLogin.controls.password.errors.minlength">password minimum should be length of 3.</span>
+          <span *ngIf="UserLogin.controls.password.errors.maxlength">password maximum should be length of 50.</span>
+        </span>
       </div>
     </form>
-    <button type="button" class="btn btn-success login_registerButton" data-dismiss="modal" (click) = loginUser()>Login</button>
+    <button type="button" id="loginButton" [disabled]="!UserLogin.valid" data-dismiss="" class="btn btn-success login_registerButton"  (click) = loginUser()>Login</button>
+
+    
   </div>
+  <span style="color: red; padding-left: 135px;" *ngIf="invalidCredentials">Invalid Credentials Entered</span>
 
   <div class="tab-pane container fade" id="Register">
 
@@ -55,12 +67,12 @@
                 <label for="FormControlUserName" style="color: lightseagreen;font-size: medium;" ><b>User Name*:</b></label>
               </div>
               <div class="col-md-6">
-                <input type="text" formControlName="UserName" placeholder="User Name" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" formControlName="userName" placeholder="User Name" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                    
-                    <span style="color: red;" *ngIf="!registrationForm.controls['UserName'].valid&&registrationForm.controls['UserName'].dirty">
-                      <span *ngIf="registrationForm.controls.UserName.errors.required">User Name is Required.</span>
-                      <span *ngIf="registrationForm.controls.UserName.errors.minlength">User name minimum should be length of 3.</span>
-                      <span *ngIf="registrationForm.controls.UserName.errors.maxlength">User name maximum should be length of 50.</span>
+                    <span style="color: red;" *ngIf="!registrationForm.controls['userName'].valid&&registrationForm.controls['userName'].dirty">
+                      <span *ngIf="registrationForm.controls.userName.errors.required">User Name is Required.</span>
+                      <span *ngIf="registrationForm.controls.userName.errors.minlength">User name minimum should be length of 3.</span>
+                      <span *ngIf="registrationForm.controls.userName.errors.maxlength">User name maximum should be length of 50.</span>
                     </span>
                      
               </div>
@@ -72,12 +84,12 @@
                 <label for="FormControlPassword" style="color: lightseagreen;font-size: medium;" ><b>Password*:</b></label>
               </div>
               <div class="col-md-6">
-                <input type="password" formControlName="Password" placeholder="Password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="password" formControlName="password" placeholder="Password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
               
-                <span style="color: red;"  *ngIf="!registrationForm.controls['Password'].valid&&registrationForm.controls['Password'].dirty">
-                  <span *ngIf="registrationForm.controls.Password.errors.required">Password is Required.</span>
-                  <span *ngIf="registrationForm.controls.Password.errors.minlength">Password minimum should be length of 3.</span>
-                  <span *ngIf="registrationForm.controls.Password.errors.maxlength">Password maximum should be length of 50.</span>
+                <span style="color: red;"  *ngIf="!registrationForm.controls['password'].valid&&registrationForm.controls['password'].dirty">
+                  <span *ngIf="registrationForm.controls.password.errors.required">password is Required.</span>
+                  <span *ngIf="registrationForm.controls.password.errors.minlength">password minimum should be length of 3.</span>
+                  <span *ngIf="registrationForm.controls.password.errors.maxlength">password maximum should be length of 50.</span>
                 </span>
               </div>
             </div>
@@ -87,10 +99,10 @@
                 <label for="FormControlEmail" style="color: lightseagreen;font-size: medium;" ><b>Email*:</b></label>
               </div>
               <div class="col-md-6">
-                <input type="email" formControlName="Email" placeholder="Email" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                <span style="color: red;" *ngIf="!registrationForm.controls['Email'].valid&&registrationForm.controls['Email'].dirty">
-                  <span *ngIf="registrationForm.controls.Email.errors.required">Email is Required.</span>
-                  <span *ngIf="registrationForm.controls.Email.errors.email">Email is not in correct pattern.</span>
+                <input type="email" formControlName="email" placeholder="Email" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <span style="color: red;" *ngIf="!registrationForm.controls['email'].valid&&registrationForm.controls['email'].dirty">
+                  <span *ngIf="registrationForm.controls.email.errors.required">Email is Required.</span>
+                  <span *ngIf="registrationForm.controls.email.errors.email">Email is not in correct pattern.</span>
                 </span>
               </div>
             </div>
@@ -100,8 +112,8 @@
                 <label for="FormControlRole" style="color: lightseagreen;font-size: medium;" ><b>Role*:</b></label>
               </div>
               <div class="col-md-6">
-                <!-- <input type="text" formControlName="Role" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"> -->
-                <select  class="form-control"  formControlName="Role" id="exampleFormControlSelect2">
+                <!-- <input type="text" formControlName="role" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"> -->
+                <select  class="form-control"  formControlName="role" id="exampleFormControlSelect2">
                   <option [ngValue]="undefined">Select Role</option>
                   <option>Customer</option>
                   <option>Sellers</option>
@@ -109,8 +121,8 @@
                   <option>CSE</option>
                 </select>
 
-                <span style="color: red;" *ngIf="!registrationForm.controls['Role'].valid&&registrationForm.controls['Role'].dirty&&registrationForm.controls['Role'].touched">
-                  <span *ngIf="registrationForm.controls.Role.errors.required">Role is Required.</span>
+                <span style="color: red;" *ngIf="!registrationForm.controls['role'].valid&&registrationForm.controls['role'].dirty&&registrationForm.controls['role'].touched">
+                  <span *ngIf="registrationForm.controls.role.errors.required">Role is Required.</span>
                 </span>
               </div>
             </div>
@@ -120,9 +132,9 @@
                 <label for="FormControlPhone" style="color: lightseagreen;font-size: medium;" ><b>Phone No*:</b></label>
               </div>
               <div class="col-md-6">
-                <input type="text" formControlName="Phone" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                <span style="color: red;" *ngIf="!registrationForm.controls['Phone'].valid&&registrationForm.controls['Phone'].dirty">
-                  <span *ngIf="registrationForm.controls.Phone.errors.required">Phone is Required.</span>
+                <input type="text" formControlName="phone" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <span style="color: red;" *ngIf="!registrationForm.controls['phone'].valid&&registrationForm.controls['phone'].dirty">
+                  <span *ngIf="registrationForm.controls.phone.errors.required">Phone is Required.</span>
                 </span>
               </div>      
             </div>
@@ -133,7 +145,7 @@
                 </div>
                 <div class="col-md-6">
                   <!-- <input type="text" formControlName="Gender" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"> -->
-                  <select class="form-control" formControlName="Gender" id="exampleFormControlSelect1">
+                  <select class="form-control" formControlName="gender" id="exampleFormControlSelect1">
                       <option>Select Gender</option>
                       <option>Male</option>
                       <option>Female</option>

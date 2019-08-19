@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
-import { Registration } from '../Model/User.Model';
+import { Registration, Credentials } from '../Model/User.Model';
 import { RegistrationService } from '../Services/registration.service';
 import { AuthenticationService } from '../Services/authentication.service';
 import { Router } from '@angular/router';
@@ -17,15 +17,29 @@ export class LoginSignupComponent implements OnInit {
   @Input() public trigger;
 
   registrationInputs: Registration[] ;
-  loginUserCredentials = {};
+  loginUserCredentials: Credentials[];
+  userId;
+
+  isLoggedin;
+
+  invalidCredentials = false;
+  dismissFlag = true;
+
+  //
+
+
+  UserLogin = this.fb.group({
+    email: ['', [Validators.required, Validators.email] ],
+    password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
+  });
 
   registrationForm = this.fb.group({
-    UserName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-    Password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-    Email: ['', [Validators.required, Validators.email]],
-    Role: ['', Validators.required],
-    Phone: ['', Validators.required],
-    Gender: [''],
+    userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    email: ['', [Validators.required, Validators.email]],
+    role: ['', Validators.required],
+    phone: ['', Validators.required],
+    gender: [''],
 
   });
   globalResponse: any;
@@ -37,18 +51,39 @@ if(trigger) {
 }
 
 
+
+dismissModal() {
+
+if (this.dismissFlag) {
+  let modalDismiss = document.getElementById('loginButton');
+  modalDismiss.setAttribute('data-dismiss', 'modal');
+  modalDismiss.click();
+  this.dismissFlag  = false;
+}
+}
+
   // tslint:disable-next-line:max-line-length
   constructor(private fb: FormBuilder, private regService: RegistrationService, private auth: AuthenticationService, private _router: Router) { }
 
-  loginUser(){
-
+  loginUser() {
+    this.loginUserCredentials = this.UserLogin.value;
     this.auth.loginUser(this.loginUserCredentials)
     .subscribe(
       res => {
-        localStorage.setItem('token', res.token);
-        this._router.navigate(['/loggedIn']);
+        if (res.message === 'Authorized User') {
+          localStorage.setItem('token', res.token);
+          this._router.navigate(['/loggedIn']);
+          this.auth.loggedIn();
+          this.dismissModal();
+        } else {
+          this.invalidCredentials = true;
+          this._router.navigate(['/']);
+        }
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+      this.invalidCredentials = true;
+      }
     );
   }
 
@@ -82,6 +117,7 @@ if(trigger) {
 
 
   ngOnInit() {
+    this.auth.isLoggedIn.subscribe(message => this.isLoggedin = message);
   }
 
 }
