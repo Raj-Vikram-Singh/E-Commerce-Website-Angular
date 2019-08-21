@@ -12,6 +12,7 @@ import { TokenInterceptorService } from './Services/token-interceptor.service';
 import { AddProductComponent } from './Admin/add-product/add-product.component';
 import { ShowAllProductsComponent } from './Admin/show-all-products/show-all-products.component';
 import { UpdateProductComponent } from './Admin/update-product/update-product.component';
+import { DashboardCatalogComponent } from './dashboard-catalog/dashboard-catalog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
     LoginSuccessComponent,
     AddProductComponent,
     ShowAllProductsComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    DashboardCatalogComponent
   ],
   imports: [
     BrowserModule,

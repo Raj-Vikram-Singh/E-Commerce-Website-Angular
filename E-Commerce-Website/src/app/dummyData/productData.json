@@ -1,0 +1,118 @@
+[
+    {
+        "name" : "Nokia 1200",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/Nokia1200.jpg"
+
+    }
+,
+    {
+        "name" : "Nokia Next",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/NokiaNext.jpg"
+
+    }
+,
+    {
+        "name" : "Nokia Gen",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/NokiaGen.jpg"
+
+    }
+,
+    {
+        "name" : "Samsung Corby",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/SamsungCorby.jpg"
+
+    }
+,
+    {
+        "name" : "Samsung S10",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/SamsungS10.jfif"
+
+    }
+,
+    {
+        "name" : "Samsung M20",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/SamsungM20.jfif"
+
+    }
+,
+    {
+        "name" : "Xiomi X2",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/XiomiX2.jfif"
+
+    }
+,
+    {
+        "name" : "Oppo 2",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/Oppo2.jpg"
+
+    }
+,
+    {
+        "name" : "Redmi Note",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/RedmiNote.jfif"
+
+    }
+,
+    {
+        "name" : "Ipone X",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/IponeX.jfif"
+
+    }
+,
+    {
+        "name" : "Iphone 5",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/Iphone5.jfif"
+
+    }
+,
+    {
+        "name" : "Iphone 8",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/Iphone8.jfif"
+
+    }
+,
+    {
+        "name" : "Realme pro",
+        "price": 15000,
+        "quantity":4,
+        "description":"6 Gb RAM, 64 Gb ROM",
+        "image": "../../assets/Realmepro.jpg"
+
+    }
+]
